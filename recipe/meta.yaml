@@ -14,7 +14,7 @@ source:
   {{ hash_type }}: {{ hash_val }}
 
 build:
-  number: 0
+  number: 1
   script: python setup.py install --single-version-externally-managed --record=record.txt
 
 requirements:
@@ -32,6 +32,7 @@ test:
 about:
   home: https://github.com/Uberi/speech_recognition
   license: BSD 3-Clause
+  license_file: LICENSE.txt
   summary: 'Library for performing speech recognition, with support for several engines and APIs, online and offline.'
 
 extra:
