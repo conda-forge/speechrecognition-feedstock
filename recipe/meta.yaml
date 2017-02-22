@@ -1,20 +1,21 @@
-{%set name = "speechrecognition" %}
-{%set camelName = "SpeechRecognition" %}
-{%set version = "3.4.6" %}
+{%set name = "SpeechRecognition" %}
+{%set version = "3.6.0" %}
+{%set compress_type = "tar.gz" %}
 {%set hash_type = "sha256" %}
-{%set hash_val = "393eab35f102e6406dcacd54ff06473c2c86371cd566f8b314cf79df2d89ac31" %}
+{%set hash_val = "22391df1c5e2b4d9b9ac423e4fa29b96c99f83142fc4d06d627c0af67f4f67d7" %}
+{%set build_num = "0" %}
 
 package:
-  name: {{ name }}
+  name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar.gz
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ camelName }}-{{ version }}.tar.gz
+  fn: {{ name }}-{{ version }}.{{ compress_type }}
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.{{ compress_type }}
   {{ hash_type }}: {{ hash_val }}
 
 build:
-  number: 1
+  number: {{ build_num }}
   script: python setup.py install --single-version-externally-managed --record=record.txt
 
 requirements:
@@ -32,8 +33,10 @@ test:
 about:
   home: https://github.com/Uberi/speech_recognition
   license: BSD 3-Clause
+  license_family: BSD
   license_file: LICENSE.txt
   summary: 'Library for performing speech recognition, with support for several engines and APIs, online and offline.'
+  dev_url: https://github.com/Uberi/speech_recognition
 
 extra:
   recipe-maintainers:
