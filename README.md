@@ -14,9 +14,9 @@ Summary: Library for performing speech recognition, with support for several eng
 Current build status
 ====================
 
-Linux: [![Circle CI](https://circleci.com/gh/conda-forge/speechrecognition-feedstock.svg?style=shield)](https://circleci.com/gh/conda-forge/speechrecognition-feedstock)
-OSX: [![TravisCI](https://travis-ci.org/conda-forge/speechrecognition-feedstock.svg?branch=master)](https://travis-ci.org/conda-forge/speechrecognition-feedstock)
-Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/conda-forge/speechrecognition-feedstock?svg=True)](https://ci.appveyor.com/project/conda-forge/speechrecognition-feedstock/branch/master)
+Linux: [![Circle CI](https://circleci.com/gh/conda-forge/tmpp_xwruiv-feedstock.svg?style=shield)](https://circleci.com/gh/conda-forge/tmpp_xwruiv-feedstock)
+OSX: [![TravisCI](https://travis-ci.org/conda-forge/tmpp_xwruiv-feedstock.svg?branch=master)](https://travis-ci.org/conda-forge/tmpp_xwruiv-feedstock)
+Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/conda-forge/tmpp_xwruiv-feedstock?svg=True)](https://ci.appveyor.com/project/conda-forge/tmpp-xwruiv-feedstock/branch/master)
 
 Current release info
 ====================
