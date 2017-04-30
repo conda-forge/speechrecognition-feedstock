@@ -1,9 +1,9 @@
-{%set name = "SpeechRecognition" %}
-{%set version = "3.6.5" %}
-{%set compress_type = "tar.gz" %}
-{%set hash_type = "sha256" %}
-{%set hash = "78aa179831c0137e8068cc610dd0cd5ddce254acc53ecb5f2c3a573f414822d5" %}
-{%set build = 0 %}
+{% set name = "SpeechRecognition" %}
+{% set version = "3.6.1" %}
+{% set compress_type = "tar.gz" %}
+{% set hash_type = "sha256" %}
+{% set hash = "d99949d61221ff44fd328b61e88b75a44103ca58da5dd948a8f388b3cec5057e" %}
+{% set build = 0 %}
 
 package:
   name: {{ name|lower }}
