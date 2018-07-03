@@ -1,19 +1,17 @@
 {% set name = "SpeechRecognition" %}
 {% set version = "3.6.3" %}
-{% set fn = "{}-{}-py2.py3-none-any.whl".format(name, version) %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  fn: {{ fn }}
-  url: https://pypi.io/packages/py2.py3/{{ name[0] }}/{{ name }}/{{ fn }}
-  sha256: 2d141161e6066a2e5e0b45cb8ede0ea2ac8b398d9ddf7629593580f82fa24b03
+  url: https://github.com/Uberi/speech_recognition/archive/{{ version }}.tar.gz
+  sha256: 8c2307ae8d94effffa7e73a2b646c9a144661e05193889e7564269678a5b6fea 
 
 build:
   number: 0
-  script: python -m pip install --no-deps --ignore-installed {{ fn }}
+  script: python -m pip install --no-deps --ignore-installed .
 
 requirements:
   build:
