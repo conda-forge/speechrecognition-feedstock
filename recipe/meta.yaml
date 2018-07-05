@@ -1,27 +1,22 @@
 {% set name = "SpeechRecognition" %}
-{% set version = "3.6.1" %}
-{% set compress_type = "tar.gz" %}
-{% set hash_type = "sha256" %}
-{% set hash = "d99949d61221ff44fd328b61e88b75a44103ca58da5dd948a8f388b3cec5057e" %}
-{% set build = 0 %}
+{% set version = "3.6.3" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.{{ compress_type }}
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.{{ compress_type }}
-  {{ hash_type }}: {{ hash}}
+  url: https://github.com/Uberi/speech_recognition/archive/{{ version }}.tar.gz
+  sha256: 8c2307ae8d94effffa7e73a2b646c9a144661e05193889e7564269678a5b6fea 
 
 build:
-  number: {{ build }}
-  script: python setup.py install --single-version-externally-managed --record=record.txt
+  number: 0
+  script: python -m pip install --no-deps --ignore-installed .
 
 requirements:
   build:
     - python
-    - setuptools
+    - pip
 
   run:
     - python
@@ -41,3 +36,4 @@ about:
 extra:
   recipe-maintainers:
     - pmlandwehr
+    - CurtLH
