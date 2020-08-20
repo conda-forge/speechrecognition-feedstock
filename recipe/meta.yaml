@@ -1,5 +1,5 @@
 {% set name = "SpeechRecognition" %}
-{% set version = "3.6.3" %}
+{% set version = "3.7.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,11 +7,11 @@ package:
 
 source:
   url: https://github.com/Uberi/speech_recognition/archive/{{ version }}.tar.gz
-  sha256: 8c2307ae8d94effffa7e73a2b646c9a144661e05193889e7564269678a5b6fea 
+  sha256: 2caafe07a1557a77f9e0bb38e1a05f6cd48a52486b91d51c720fcead9202e33f
 
 build:
-  number: 1000
-  script: python -m pip install --no-deps --ignore-installed .
+  number: 0
+  script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
   build:
@@ -30,7 +30,7 @@ about:
   license_file: LICENSE.txt
   license: BSD 3-Clause
   license_family: BSD
-  summary: 'Library for performing speech recognition, with support for several engines and APIs, online and offline.'
+  summary: Library for performing speech recognition, with support for several engines and APIs, online and offline.
   dev_url: https://github.com/Uberi/speech_recognition
 
 extra:
