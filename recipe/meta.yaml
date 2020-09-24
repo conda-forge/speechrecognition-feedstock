@@ -28,7 +28,7 @@ test:
 about:
   home: https://github.com/Uberi/speech_recognition
   license_file: LICENSE.txt
-  license: BSD 3-Clause
+  license: BSD-3-Clause
   license_family: BSD
   summary: Library for performing speech recognition, with support for several engines and APIs, online and offline.
   dev_url: https://github.com/Uberi/speech_recognition
