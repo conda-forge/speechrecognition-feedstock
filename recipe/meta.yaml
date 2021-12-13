@@ -8,19 +8,23 @@ package:
 source:
   url: https://github.com/Uberi/speech_recognition/archive/{{ version }}.tar.gz
   sha256: 2caafe07a1557a77f9e0bb38e1a05f6cd48a52486b91d51c720fcead9202e33f
+  patches:
+    - libflac.patch
 
 build:
-  number: 3
+  number: 4
+  noarch: python
   script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
   host:
-    - python
+    - python >=3.6
     - pip
 
   run:
-    - python
-
+    - python >=3.6
+    - libflac
+    
 test:
   imports:
     - speech_recognition
@@ -37,3 +41,4 @@ extra:
   recipe-maintainers:
     - pmlandwehr
     - CurtLH
+    - jan-janssen
