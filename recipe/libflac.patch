@@ -1,27 +1,26 @@
-From 880d6cc282b74623b38dbafdad55d7bf5e3b172f Mon Sep 17 00:00:00 2001
+From 29abbcbf9b533c7fa9a806870f1be85f0abb53a9 Mon Sep 17 00:00:00 2001
 From: Jan Janssen <jan.janssen@outlook.com>
-Date: Sun, 12 Dec 2021 19:51:27 -0700
+Date: Sun, 12 Dec 2021 20:03:48 -0700
 Subject: [PATCH] use libflac from conda
 
 ---
- setup.py                       | 24 ++++++------------------
+ setup.py                       | 23 +++++------------------
  speech_recognition/__init__.py | 13 +------------
- 2 files changed, 7 insertions(+), 30 deletions(-)
+ 2 files changed, 6 insertions(+), 30 deletions(-)
 
 diff --git a/setup.py b/setup.py
-index acb0d04..eba2b64 100644
+index acb0d04..f1eed34 100644
 --- a/setup.py
 +++ b/setup.py
-@@ -15,25 +15,14 @@
+@@ -15,25 +15,13 @@
      sys.exit(1)
  
  
 -FILES_TO_MARK_EXECUTABLE = ["flac-linux-x86", "flac-linux-x86_64", "flac-mac", "flac-win32.exe"]
 +def clean_up():
-+    os.remove("speech_recognition/flac-linux-x86")
-+    os.remove("speech_recognition/flac-linux-x86_64")
-+    os.remove("speech_recognition/flac-mac")
-+    os.remove("speech_recognition/flac-win32.exe")
++    speech_recognition_path = os.path.abspath(os.path.join(speech_recognition.__file__, ".."))
++    for f in ["flac-linux-x86", "flac-linux-x86_64", "flac-mac", "flac-win32.exe"]:
++        os.remove(os.path.join(speech_recognition_path, f))
  
  
 -class InstallWithExtraSteps(install):
@@ -44,7 +43,7 @@ index acb0d04..eba2b64 100644
  
  
  setup(
-@@ -41,7 +30,6 @@ def run(self):
+@@ -41,7 +29,6 @@ def run(self):
      version=speech_recognition.__version__,
      packages=["speech_recognition"],
      include_package_data=True,
