@@ -28,6 +28,10 @@ requirements:
 test:
   imports:
     - speech_recognition
+  requires:
+    - pip
+  commands:
+    - pip check
 
 about:
   home: https://github.com/Uberi/speech_recognition
@@ -39,6 +43,5 @@ about:
 
 extra:
   recipe-maintainers:
-    - pmlandwehr
     - CurtLH
     - jan-janssen
