@@ -1,5 +1,5 @@
 {% set name = "SpeechRecognition" %}
-{% set version = "3.7.1" %}
+{% set version = "3.9.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,12 +7,12 @@ package:
 
 source:
   url: https://github.com/Uberi/speech_recognition/archive/{{ version }}.tar.gz
-  sha256: 2caafe07a1557a77f9e0bb38e1a05f6cd48a52486b91d51c720fcead9202e33f
+  sha256: 413ae7d4db5d96bc86ee922358764d649a09ebe93e27428e3f0ef44b1f8a73e2
   patches:
     - libflac.patch
 
 build:
-  number: 4
+  number: 0
   noarch: python
   script: {{ PYTHON }} -m pip install . --no-deps -vv
 
@@ -24,7 +24,7 @@ requirements:
   run:
     - python >=3.6
     - libflac
-    
+
 test:
   imports:
     - speech_recognition
