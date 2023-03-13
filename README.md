@@ -1,11 +1,11 @@
-About speechrecognition
-=======================
+About speechrecognition-feedstock
+=================================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/speechrecognition-feedstock/blob/main/LICENSE.txt)
 
 Home: https://github.com/Uberi/speech_recognition
 
 Package license: BSD-3-Clause
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/speechrecognition-feedstock/blob/main/LICENSE.txt)
 
 Summary: Library for performing speech recognition, with support for several engines and APIs, online and offline.
 
