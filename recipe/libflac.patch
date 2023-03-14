@@ -5,8 +5,8 @@ Subject: [PATCH] use libflac from conda
 
 ---
  setup.py                       | 25 +++++++------------------
- speech_recognition/__init__.py | 13 +------------
- 2 files changed, 8 insertions(+), 30 deletions(-)
+ speech_recognition/audio.py    | 31 +++----------------------------
+ 2 files changed, 10 insertions(+), 46 deletions(-)
 
 diff --git a/setup.py b/setup.py
 index acb0d04..f1eed34 100644
@@ -53,27 +53,45 @@ index acb0d04..f1eed34 100644
  
      # PyPI metadata
      author=speech_recognition.__author__,
-diff --git a/speech_recognition/__init__.py b/speech_recognition/__init__.py
-index fe197b3..d303eee 100644
---- a/speech_recognition/__init__.py
-+++ b/speech_recognition/__init__.py
-@@ -1182,18 +1182,7 @@ def get_flac_converter():
+diff --git a/speech_recognition/audio.py b/speech_recognition/audio.py
+index 732f7e01..3476cace 100644
+--- a/speech_recognition/audio.py
++++ b/speech_recognition/audio.py
+@@ -262,34 +262,9 @@ def get_flac_converter():
      """Returns the absolute path of a FLAC converter executable, or raises an OSError if none can be found."""
      flac_converter = shutil_which("flac")  # check for installed version first
      if flac_converter is None:  # flac utility is not installed
--        base_path = os.path.dirname(os.path.abspath(__file__))  # directory of the current module file, where all the FLAC bundled binaries are stored
+-        base_path = os.path.dirname(
+-            os.path.abspath(__file__)
+-        )  # directory of the current module file, where all the FLAC bundled binaries are stored
 -        system, machine = platform.system(), platform.machine()
--        if system == "Windows" and machine in {"i686", "i786", "x86", "x86_64", "AMD64"}:
+-        if system == "Windows" and machine in {
+-            "i686",
+-            "i786",
+-            "x86",
+-            "x86_64",
+-            "AMD64",
+-        }:
 -            flac_converter = os.path.join(base_path, "flac-win32.exe")
--        elif system == "Darwin" and machine in {"i686", "i786", "x86", "x86_64", "AMD64"}:
+-        elif system == "Darwin" and machine in {
+-            "i686",
+-            "i786",
+-            "x86",
+-            "x86_64",
+-            "AMD64",
+-        }:
 -            flac_converter = os.path.join(base_path, "flac-mac")
 -        elif system == "Linux" and machine in {"i686", "i786", "x86"}:
 -            flac_converter = os.path.join(base_path, "flac-linux-x86")
 -        elif system == "Linux" and machine in {"x86_64", "AMD64"}:
 -            flac_converter = os.path.join(base_path, "flac-linux-x86_64")
 -        else:  # no FLAC converter available
--            raise OSError("FLAC conversion utility not available - consider installing the FLAC command line application by running `apt-get install flac` or your operating system's equivalent")
-+        raise OSError("FLAC conversion utility not available - consider installing the FLAC command line application by running `apt-get install flac` or your operating system's equivalent")
+-            raise OSError(
+-                "FLAC conversion utility not available - consider installing the FLAC command line application by running `apt-get install flac` or your operating system's equivalent"
+-            )
++        raise OSError(
++            "FLAC conversion utility not available - consider installing the FLAC command line application by running `apt-get install flac` or your operating system's equivalent"
++        )
  
      # mark FLAC converter as executable if possible
      try:
