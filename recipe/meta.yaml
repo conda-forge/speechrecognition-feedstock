@@ -25,6 +25,7 @@ requirements:
     - python >=3.6
     - libflac
     - requests
+    - typing-extensions
 
 test:
   imports:
