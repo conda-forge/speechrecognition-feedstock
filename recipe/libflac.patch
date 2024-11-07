@@ -1,38 +1,32 @@
-From 29abbcbf9b533c7fa9a806870f1be85f0abb53a9 Mon Sep 17 00:00:00 2001
-From: Jan Janssen <jan.janssen@outlook.com>
-Date: Sun, 12 Dec 2021 20:03:48 -0700
-Subject: [PATCH] use libflac from conda
+From 374b09cb60d46f1ecb784ef6d7a8e506bc0b9552 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Jan=20Jan=C3=9Fen?= <janssen@mpie.de>
+Date: Thu, 7 Nov 2024 20:57:00 +0100
+Subject: [PATCH] patch
 
 ---
- setup.py                    | 27 +++++++--------------------
- speech_recognition/audio.py | 32 +++-----------------------------
- 2 files changed, 10 insertions(+), 49 deletions(-)
+ setup.py                    | 30 +++++++-----------------------
+ speech_recognition/audio.py | 34 ++++------------------------------
+ 2 files changed, 11 insertions(+), 53 deletions(-)
 
 diff --git a/setup.py b/setup.py
-index 158d1373..8afbde09 100644
+index 29c0c82..ff6d0b2 100644
 --- a/setup.py
 +++ b/setup.py
-@@ -9,28 +9,16 @@
+@@ -11,36 +11,20 @@
  
- import speech_recognition
+ logger = logging.getLogger("SpeechRecognition.setup")
  
 -FILES_TO_MARK_EXECUTABLE = ["flac-linux-x86", "flac-linux-x86_64", "flac-mac", "flac-win32.exe"]
- 
-+def clean_up():
-+    speech_recognition_path = os.path.abspath(os.path.join(__file__, "..", "speech_recognition"))
-+    for f in ["flac-linux-x86", "flac-linux-x86_64", "flac-mac", "flac-win32.exe"]:
-+        file = os.path.join(speech_recognition_path, f)
-+        if os.path.exists(file):
-+            os.remove(file)
- 
+-
+-
 -class InstallWithExtraSteps(install):
 -    def run(self):
 -        install.run(self)  # do the original install steps
- 
+-
 -        # mark the FLAC executables as executable by all users (this fixes occasional issues when file permissions get messed up)
 -        for output_path in self.get_outputs():
 -            if os.path.basename(output_path) in FILES_TO_MARK_EXECUTABLE:
--                log.info("setting executable permissions on {}".format(output_path))
+-                logger.info("setting executable permissions on %s", output_path)
 -                stat_info = os.stat(output_path)
 -                OWNER_CAN_READ_EXECUTE = stat.S_IRUSR | stat.S_IXUSR
 -                GROUP_CAN_READ_EXECUTE = stat.S_IRGRP | stat.S_IXGRP
@@ -44,23 +38,29 @@ index 158d1373..8afbde09 100644
 -                    | GROUP_CAN_READ_EXECUTE
 -                    | OTHERS_CAN_READ_EXECUTE,
 -                )
++def clean_up():
++    speech_recognition_path = os.path.abspath(os.path.join(__file__, "..", "speech_recognition"))
++    for f in ["flac-linux-x86", "flac-linux-x86_64", "flac-mac", "flac-win32.exe"]:
++        file = os.path.join(speech_recognition_path, f)
++        if os.path.exists(file):
++            os.remove(file)
+ 
 +clean_up()
  
- 
  setup(
-@@ -38,7 +26,6 @@ def run(self):
+     name="SpeechRecognition",
      version=speech_recognition.__version__,
-     packages=["speech_recognition"],
+     packages=find_packages(exclude=["tests.*", "test"]),
      include_package_data=True,
 -    cmdclass={"install": InstallWithExtraSteps},
  
      # PyPI metadata
      author=speech_recognition.__author__,
 diff --git a/speech_recognition/audio.py b/speech_recognition/audio.py
-index 2322f36e..963da51f 100644
+index 2322f36..8a36559 100644
 --- a/speech_recognition/audio.py
 +++ b/speech_recognition/audio.py
-@@ -262,35 +262,9 @@ def get_flac_converter():
+@@ -262,36 +262,10 @@ def get_flac_converter():
      """Returns the absolute path of a FLAC converter executable, or raises an OSError if none can be found."""
      flac_converter = shutil_which("flac")  # check for installed version first
      if flac_converter is None:  # flac utility is not installed
@@ -93,9 +93,11 @@ index 2322f36e..963da51f 100644
 -            raise OSError(
 -                "FLAC conversion utility not available - consider installing the FLAC command line application by running `apt-get install flac` or your operating system's equivalent"
 -            )
+-
 +        raise OSError(
 +            "FLAC conversion utility not available - consider installing the FLAC command line application by running `apt-get install flac` or your operating system's equivalent"
 +        )
- 
++ 
      # mark FLAC converter as executable if possible
      try:
+         # handle known issue when running on docker:
