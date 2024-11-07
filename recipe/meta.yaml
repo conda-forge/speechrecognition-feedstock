@@ -18,12 +18,12 @@ build:
 
 requirements:
   host:
-    - python >=3.6
+    - python >=3.6,<3.13
     - pip
     - setuptools
 
   run:
-    - python >=3.6
+    - python >=3.6,<3.13
     - libflac
     - requests
     - typing-extensions
