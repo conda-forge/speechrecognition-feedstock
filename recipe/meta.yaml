@@ -12,18 +12,18 @@ source:
     - libflac.patch
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
   host:
-    - python >=3.6,<3.13
+    - python {{ python_min }}
     - pip
     - setuptools
 
   run:
-    - python >=3.6,<3.13
+    - python >={{ python_min }},<3.13
     - libflac
     - requests
     - typing-extensions
@@ -33,6 +33,7 @@ test:
     - speech_recognition
   requires:
     - pip
+    - python {{ python_min }}
   commands:
     - pip check
 
