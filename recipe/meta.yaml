@@ -1,5 +1,5 @@
 {% set name = "SpeechRecognition" %}
-{% set version = "3.13.0" %}
+{% set version = "3.14.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/Uberi/speech_recognition/archive/{{ version }}.tar.gz
-  sha256: 16c2260b6f29435df9b124b4303089a018cfae0a00e566f246cbdc0333ece157
+  sha256: 33634a26b31eaed106e5d5ba8ab31fae91506ae7cec73e23bb63d67d786d775b
   patches:
     - libflac.patch
 
