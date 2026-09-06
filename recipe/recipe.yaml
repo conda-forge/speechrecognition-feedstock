@@ -1,0 +1,50 @@
+schema_version: 1
+
+context:
+  name: SpeechRecognition
+  version: "3.17.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/Uberi/speech_recognition/archive/${{ version }}.tar.gz
+  sha256: b723e0423a282940dcadfa6e9ca919a8ccf0313179e1d58a55e0770c3ed13a2e
+  patches:
+    - libflac.patch
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . --no-deps -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }},<3.13
+    - libflac
+    - requests
+    - typing-extensions
+
+tests:
+  - python:
+      imports:
+        - speech_recognition
+      pip_check: true
+      python_version: ${{ python_min }}
+
+about:
+  license_file: LICENSE.txt
+  license: BSD-3-Clause
+  summary: Library for performing speech recognition, with support for several engines and APIs, online and offline.
+  homepage: https://github.com/Uberi/speech_recognition
+  repository: https://github.com/Uberi/speech_recognition
+
+extra:
+  recipe-maintainers:
+    - CurtLH
+    - jan-janssen
